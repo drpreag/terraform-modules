@@ -7,7 +7,7 @@ resource "aws_route53_zone" "private" {
     vpc_id = var.vpc-id
   }
   tags = {
-    Name = "${ocal.vpc-name}-${var.environment}"
+    Name = "${local.vpc-name}-${var.environment}"
   }
 }
 
@@ -18,6 +18,6 @@ resource "aws_route53_zone" "public" {
     vpc_id = var.vpc-id
   }
   tags = {
-    Name = "${ocal.vpc-name}-${var.environment}"
+    Name = "${local.vpc-name}-${var.environment}"
   }
 }
