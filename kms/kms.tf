@@ -14,6 +14,9 @@ resource "aws_kms_key" "main-key" {
       }
     ]
   })
+  tags = {
+    Name = "${ocal.vpc-name}-${var.environment}"
+  }
 }
 
 resource "aws_kms_alias" "alias" {
