@@ -3,7 +3,7 @@
 
 # Bastion sg
 resource "aws_security_group" "bastion-sg" {
-  name        = "${var.vpc-name}-${var.environment}-bastion"
+  name        = "${local.vpc-name}-${var.environment}-bastion"
   description = "Bastion security group"
   vpc_id      = var.vpc-id
 
@@ -29,7 +29,7 @@ resource "aws_security_group" "bastion-sg" {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = [var.vpc-cidr]
+    cidr_blocks = [local.vpc-cidr]
   }
   egress {
     from_port   = 0
@@ -38,13 +38,13 @@ resource "aws_security_group" "bastion-sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   tags = {
-    Name = "${var.vpc-name}-${var.environment}-bastion"
+    Name = "${local.vpc-name}-${var.environment}-bastion"
   }
 }
 
 # LB sg
 resource "aws_security_group" "lb-sg" {
-  name        = "${var.vpc-name}-${var.environment}-lb"
+  name        = "${local.vpc-name}-${var.environment}-lb"
   description = "LB / HTTPS security group"
   vpc_id      = var.vpc-id
 
@@ -67,7 +67,7 @@ resource "aws_security_group" "lb-sg" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = [ var.vpc-cidr ]
+    cidr_blocks = [ local.vpc-cidr ]
   }
   ingress {
     description = "HTTPS from anywhere"
@@ -83,13 +83,13 @@ resource "aws_security_group" "lb-sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   tags = {
-    Name = "${var.vpc-name}-${var.environment}-lb"
+    Name = "${local.vpc-name}-${var.environment}-lb"
   }
 }
 
 # Core sg
 resource "aws_security_group" "core-sg" {
-  name        = "${var.vpc-name}-${var.environment}-core"
+  name        = "${local.vpc-name}-${var.environment}-core"
   description = "Core security group"
   vpc_id      = var.vpc-id
 
@@ -121,13 +121,13 @@ resource "aws_security_group" "core-sg" {
     cidr_blocks = ["0.0.0.0/0"] # or vpc.cidr_block to prevent go outside vpc
   }
   tags = {
-    Name = "${var.vpc-name}-${var.environment}-core"
+    Name = "${local.vpc-name}-${var.environment}-core"
   }
 }
 
 # Kubernetes sg
 resource "aws_security_group" "k8s-sg" {
-  name        = "${var.vpc-name}-${var.environment}-k8s"
+  name        = "${local.vpc-name}-${var.environment}-k8s"
   description = "Kubernetes worker nodes security group"
   vpc_id      = var.vpc-id
 
@@ -156,16 +156,16 @@ resource "aws_security_group" "k8s-sg" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = [ var.vpc-cidr ]
+    cidr_blocks = [ local.vpc-cidr ]
   }
   tags = {
-    Name = "${var.vpc-name}-${var.environment}-k8s-worker-nodes"
+    Name = "${local.vpc-name}-${var.environment}-k8s-worker-nodes"
   }
 }
 
 # DB sg
 resource "aws_security_group" "db-sg" {
-  name        = "${var.vpc-name}-${var.environment}-db"
+  name        = "${local.vpc-name}-${var.environment}-db"
   description = "DB security group"
   vpc_id      = var.vpc-id
 
@@ -187,11 +187,11 @@ resource "aws_security_group" "db-sg" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = [var.vpc-cidr]
+    cidr_blocks = [local.vpc-cidr]
   }
 
   tags = {
-    Name = "${var.vpc-name}-${var.environment}-db"
+    Name = "${local.vpc-name}-${var.environment}-db"
   }
 }
 
