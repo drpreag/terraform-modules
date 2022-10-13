@@ -11,3 +11,9 @@ All public routes use this ENI for routing.
 Creates Bastion/Jumpbox/VPN instance
 
 # EKS
+
+# KMS
+
+# Route53
+- private zone
+- public zone
