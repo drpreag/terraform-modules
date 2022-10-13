@@ -1,3 +1,3 @@
 
-variable "vpc" {}
+variable "vpc-id" {}
 variable "zone-name" {}
