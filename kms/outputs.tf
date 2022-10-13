@@ -1,4 +1,4 @@
 
-output "kms_key" {
+output "kms-key" {
   value = aws_kms_key.main-key
 }

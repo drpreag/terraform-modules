@@ -1,9 +1,9 @@
 
-output "route53_private_zone" {
+output "route53-private-zone" {
   value = aws_route53_zone.private
 }
 
-output "route53_public_zone" {
+output "route53-public-zone" {
   value = aws_route53_zone.public
 }
 
