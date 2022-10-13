@@ -1,6 +1,6 @@
 
 locals {
-  vpc-name = var.vpc.tags["Name"]
+  vpc-name = data.aws_vpc.vpc.tags["Name"]
 }
 
 data "aws_vpc" "vpc" {
