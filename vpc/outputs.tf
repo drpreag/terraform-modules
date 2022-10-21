@@ -1,5 +1,5 @@
-output "vpc-id" {
-  value = aws_vpc.vpc.id
+output "vpc" {
+  value = aws_vpc.vpc
 }
 
 output "subnets-dmz" {
