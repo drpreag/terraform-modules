@@ -17,3 +17,17 @@ Creates Bastion/Jumpbox/VPN instance
 # Route53
 - private zone
 - public zone
+
+
+# Usage:
+
+```
+module "vpc" {
+  source      = "git::https://github.com/drpreag/terraform-modules.git//vpc?ref=1.0.0"
+  vpc-name    = var.vpc-name
+  vpc-cidr    = var.vpc-cidr
+  az-count    = var.az-count
+  environment = var.environment
+  company-ips = var.company-ips
+}
+```
